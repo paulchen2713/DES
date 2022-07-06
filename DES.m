@@ -1,7 +1,7 @@
 %
 % DES main program
 %
-% clear all;
+clear;
 clc;
 %
 % input message and key
@@ -27,3 +27,4 @@ fprintf('\n Original plaintext is: %s\n', plaintext);
 fprintf('\n Encryption key is: %s \n', key);
 fprintf('\n Encrypted ciphertext is: %s \n', ciphertext);
 fprintf('\n Recovered plaintext is %s \n', R_plaintext);
+
