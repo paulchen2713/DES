@@ -1,7 +1,7 @@
 %
-% TDEA(Triple Data Encryption Algorithm)
+% TDEA (Triple Data Encryption Algorithm)
 %
-% clear all;
+clear;
 clc;
 %
 % input message and key
@@ -9,11 +9,11 @@ clc;
 % plaintext = '0123456789abcdef';
 % plain = '0123456789abcdeffecdab1645237980fecdab16452379800123456789abcdef33';
 %
-% plain_text = '­n°µªº¨Æ±¡Á`§ä±o¥X®É¶¡©M¾÷·|¡A¤£­n°µªº¨Æ±¡Á`§äªº¥XÂÇ¤f¡C--±i·R¬Â';
+% plain_text = 'è¦åšçš„äº‹æƒ…ç¸½æ‰¾å¾—å‡ºæ™‚é–“å’Œæ©Ÿæœƒï¼Œä¸è¦åšçš„äº‹æƒ…ç¸½æ‰¾çš„å‡ºè—‰å£ã€‚--å¼µæ„›ç²';
 text_mode = 'Chinese';
 %
 word = actxserver('Word.Application');
-wdoc = word.Documents.Open('D:\Beginner MATLAB Projects\Post_Quantum_Cryptography_MATLAB\DES_verify\§E¥ú¤¤_ªü¨½¤sÆg.docx');
+wdoc = word.Documents.Open('D:\Beginner MATLAB Projects\Post_Quantum_Cryptography_MATLAB\DES_verify\ä½™å…‰ä¸­_é˜¿é‡Œå±±è®š.docx');
 plain_text = wdoc.Content.Text;
 Quit(word);
 delete(word);
@@ -22,6 +22,7 @@ delete(word);
 % text_mode = 'English';
 %
 % Input key has to be 0-9, a-f, or A-F.
+%
 key1 = '133457799bbcdff1';
 key2 = 'aabcdbcdeffe6497';
 key3 = '974acfe58d1b32f6';
@@ -38,8 +39,7 @@ if strcmp(text_mode, 'English') == 1
     plain_text_len = length(plain_text);
     plain = char();
     for i = 1 : plain_text_len
-        % turn the char string into a double,
-        % then turn into a 2 bits hexdecimal
+        % turn the char string into a double, then turn into a 2 bits hexdecimal
         pp = dec2hex(double(plain_text(i)), 2);
         plain = strcat(plain, pp);
     end
@@ -47,8 +47,7 @@ elseif strcmp(text_mode, 'Chinese') == 1
     plain_text_len = length(plain_text);
     plain = char();
     for i = 1 : plain_text_len
-        % turn the char string into a double,
-        % then turn into a 2 bits hexdecimal
+        % turn the char string into a double, then turn into a 2 bits hexdecimal
         pp = dec2hex(double(plain_text(i)), 4);
         plain = strcat(plain, pp);
     end
@@ -59,7 +58,9 @@ q = floor(plain_len / 16); % integer division
 r = mod(plain_len, 16);
 if r ~= 0
     q = q + 1;
+    % 
     % pending 
+    % 
     plain = strcat(plain, '8');
     for i = 1 : 16-r-1
         plain = strcat(plain, '0');
@@ -88,16 +89,14 @@ end
 %
 if strcmp(text_mode, 'English') == 1
     R_plaintext_len = length(R_plaintext);
-    % to preserve the spaces in the original char string, first 
-    R_plain_text = zeros(1, R_plaintext_len/2);
+    R_plain_text = zeros(1, R_plaintext_len/2); % to preserve the spaces in the original char string, first 
     for i = 1 : R_plaintext_len/2
         R_plain_text(i) = hex2dec(R_plaintext((i-1)*2 + 1 : i*2));
     end
     R_plain_text = char(R_plain_text);
 elseif strcmp(text_mode, 'Chinese') == 1
     R_plaintext_len = length(R_plaintext);
-    % to preserve the spaces in the original char string, first 
-    R_plain_text = zeros(1, R_plaintext_len/4);
+    R_plain_text = zeros(1, R_plaintext_len/4); % to preserve the spaces in the original char string, first 
     for i = 1 : R_plaintext_len/4
         R_plain_text(i) = hex2dec(R_plaintext((i-1)*4 + 1:i*4));
     end
@@ -118,3 +117,4 @@ fprintf('\n Encryption key3 is: %s \n', key3);
 fprintf('\n Encrypted ciphertext is: %s \n', ciphertext);
 % fprintf('\n Recovered plaintext is: %s \n', R_plaintext);
 fprintf('\n Recovered plaintext is: %s \n', R_plain_text);
+
