@@ -1,7 +1,7 @@
 %
-% TDEA(Triple Data Encryption Algorithm)
+% TDEA (Triple Data Encryption Algorithm)
 %
-% clear all;
+clear;
 clc;
 %
 % input message and key
@@ -9,11 +9,11 @@ clc;
 % plaintext = '0123456789abcdef';
 % plain = '0123456789abcdeffecdab1645237980fecdab16452379800123456789abcdef33';
 %
-% plain_text = '­n°µªº¨Æ±¡Á`§ä±o¥X®É¶¡©M¾÷·|¡A¤£­n°µªº¨Æ±¡Á`§äªº¥XÂÇ¤f¡C--±i·R¬Â';
+% plain_text = 'è¦åšçš„äº‹æƒ…ç¸½æ‰¾å¾—å‡ºæ™‚é–“å’Œæ©Ÿæœƒï¼Œä¸è¦åšçš„äº‹æƒ…ç¸½æ‰¾çš„å‡ºè—‰å£ã€‚--å¼µæ„›ç²';
 text_mode = 'Chinese';
 %
 word = actxserver('Word.Application');
-wdoc = word.Documents.Open('D:\Beginner MATLAB Projects\Post_Quantum_Cryptography_MATLAB\DES_verify\§E¥ú¤¤_ªü¨½¤sÆg.docx');
+wdoc = word.Documents.Open('D:\Beginner MATLAB Projects\Post_Quantum_Cryptography_MATLAB\DES_verify\ä½™å…‰ä¸­_é˜¿é‡Œå±±è®š.docx');
 plain_text = wdoc.Content.Text;
 Quit(word);
 delete(word);
